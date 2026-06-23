@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/NOTE.app/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#7c3aed" />
+    <meta name="description" content="회의록, 여행계획, 프로젝트 계획을 자동으로 가독성 있게 정리해주는 스마트 메모 앱" />
+    <!-- PWA 모바일 최적화 -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SmartMemo" />
+    <title>SmartMemo</title>
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function(){
+        var p = window.location.search.slice(1);
+        if (p && p.indexOf('p=') === 0) {
+          var path = decodeURIComponent(p.slice(2).replace(/&/g,'?').replace(/~/g,'&'));
+          window.history.replaceState(null, null, '/' + path);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/NOTE.app/assets/index-BUU_KpTn.js"></script>
+    <link rel="stylesheet" crossorigin href="/NOTE.app/assets/index-3N-bxoAu.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
