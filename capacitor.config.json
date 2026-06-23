@@ -1,0 +1,15 @@
+{
+  "appId": "com.smartmemo.app",
+  "appName": "SmartMemo",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "backgroundColor": "#7c3aed",
+      "showSpinner": false
+    }
+  }
+}
