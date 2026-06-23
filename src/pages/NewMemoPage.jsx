@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Wand2, Save, Loader2, Palette } from 'lucide-react'
+import { Wand2, Save, Loader2, Palette, Home } from 'lucide-react'
 import { detectType, parseContent } from '../utils/parser'
-import { saveMemo } from '../utils/firestore'
+import { saveMemo } from '../utils/storage'
 import { TYPE_CONFIG, EXAMPLE_TEXTS } from '../config/types'
 import { THEMES } from '../config/themes'
 import { useTheme } from '../context/ThemeContext'
@@ -53,8 +53,7 @@ export default function NewMemoPage() {
             onClick={() => step === 'preview' ? setStep('input') : navigate('/')}
             className="flex items-center gap-1.5 text-slate-600 hover:text-slate-800 text-sm font-medium"
           >
-            <ArrowLeft size={16} />
-            {step === 'preview' ? '수정하기' : '뒤로'}
+            {step === 'preview' ? '← 수정하기' : '← 뒤로'}
           </button>
 
           <div className="flex items-center gap-2">
@@ -65,19 +64,24 @@ export default function NewMemoPage() {
             </button>
           </div>
 
-          {step === 'preview' ? (
-            <button onClick={handleSave} disabled={saving}
-              className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-violet-700 disabled:opacity-50 transition-colors">
-              {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
-              저장
+          <div className="flex items-center gap-1">
+            {step === 'preview' ? (
+              <button onClick={handleSave} disabled={saving}
+                className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-violet-700 disabled:opacity-50 transition-colors">
+                {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+                저장
+              </button>
+            ) : (
+              <button onClick={handleParse} disabled={!text.trim() || parsing}
+                className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-violet-700 disabled:opacity-50 transition-colors">
+                {parsing ? <Loader2 size={14} className="animate-spin" /> : <Wand2 size={14} />}
+                정리하기
+              </button>
+            )}
+            <button onClick={() => navigate('/')} className="p-2 rounded-xl text-slate-400 hover:text-violet-600 hover:bg-violet-50 transition-colors" title="홈으로">
+              <Home size={16} />
             </button>
-          ) : (
-            <button onClick={handleParse} disabled={!text.trim() || parsing}
-              className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-violet-700 disabled:opacity-50 transition-colors">
-              {parsing ? <Loader2 size={14} className="animate-spin" /> : <Wand2 size={14} />}
-              정리하기
-            </button>
-          )}
+          </div>
         </div>
       </header>
 

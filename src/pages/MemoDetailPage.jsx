@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Trash2, Loader2, Copy, Check } from 'lucide-react'
-import { getMemo, deleteMemo } from '../utils/firestore'
+import { ArrowLeft, Trash2, Loader2, Copy, Check, Home } from 'lucide-react'
+import { getMemo, deleteMemo } from '../utils/storage'
 import { TYPE_CONFIG } from '../config/types'
 import { THEMES } from '../config/themes'
 import { useTheme } from '../context/ThemeContext'
@@ -55,7 +55,9 @@ export default function MemoDetailPage() {
   const theme = THEMES[activeThemeId] || THEMES.classic
   const config = TYPE_CONFIG[memo.type] || TYPE_CONFIG.meeting
   const Icon = config.icon
-  const createdAt = memo.createdAt?.toDate ? format(memo.createdAt.toDate(), 'yyyy년 M월 d일 HH:mm', { locale: ko }) : ''
+  const createdAt = memo.createdAt
+    ? format(memo.createdAt?.toDate ? memo.createdAt.toDate() : new Date(memo.createdAt), 'yyyy년 M월 d일 HH:mm', { locale: ko })
+    : ''
 
   return (
     <div className={`min-h-screen ${theme.pageBg}`}>
@@ -74,6 +76,9 @@ export default function MemoDetailPage() {
             </button>
             <button onClick={handleDelete} className="p-2 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors">
               <Trash2 size={15} />
+            </button>
+            <button onClick={() => navigate('/')} className="p-2 rounded-lg hover:bg-violet-50 text-slate-400 hover:text-violet-600 transition-colors" title="홈으로">
+              <Home size={15} />
             </button>
           </div>
         </div>

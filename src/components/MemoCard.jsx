@@ -6,8 +6,8 @@ import { TYPE_CONFIG } from '../config/types'
 export default function MemoCard({ memo, onView, onDelete }) {
   const config = TYPE_CONFIG[memo.type] || TYPE_CONFIG.meeting
   const Icon = config.icon
-  const createdAt = memo.createdAt?.toDate
-    ? format(memo.createdAt.toDate(), 'yyyy.MM.dd HH:mm', { locale: ko })
+  const createdAt = memo.createdAt
+    ? format(memo.createdAt?.toDate ? memo.createdAt.toDate() : new Date(memo.createdAt), 'yyyy.MM.dd HH:mm', { locale: ko })
     : ''
 
   return (

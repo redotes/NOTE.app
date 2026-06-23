@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, Check, RotateCcw } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check, RotateCcw, Home } from 'lucide-react'
 import { THEMES } from '../config/themes'
 import { useTheme } from '../context/ThemeContext'
 import UniversalView from '../components/UniversalView'
@@ -128,8 +128,13 @@ export default function QuizPage() {
             {step > 0 && step < 5 ? '이전' : '뒤로'}
           </button>
           <span className="font-semibold text-slate-800">성향 분석</span>
-          <div className="w-16 text-right text-xs text-slate-400">
-            {step < 5 ? `${step + 1} / ${QUESTIONS.length}` : '완료'}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-slate-400">
+              {step < 5 ? `${step + 1} / ${QUESTIONS.length}` : '완료'}
+            </span>
+            <button onClick={() => navigate('/')} className="p-1.5 rounded-lg text-slate-400 hover:text-violet-600 hover:bg-violet-50 transition-colors" title="홈으로">
+              <Home size={15} />
+            </button>
           </div>
         </div>
       </header>

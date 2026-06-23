@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, Save, Palette, Type, Layout, Pencil, Eraser, RotateCcw, Upload, Eye } from 'lucide-react'
+import { ArrowLeft, Save, Palette, Type, Layout, Pencil, Eraser, RotateCcw, Upload, Eye, Home } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import { THEMES } from '../config/themes'
 import UniversalView from '../components/UniversalView'
@@ -187,10 +187,15 @@ export default function DesignBuilderPage() {
             <ArrowLeft size={16} />뒤로
           </button>
           <span className="font-semibold text-slate-800">나만의 디자인 만들기</span>
-          <button onClick={handleSave}
-            className="flex items-center gap-2 bg-violet-600 text-white px-3 py-1.5 rounded-xl text-sm font-medium hover:bg-violet-700 transition-colors">
-            <Save size={14} />저장
-          </button>
+          <div className="flex items-center gap-1">
+            <button onClick={handleSave}
+              className="flex items-center gap-2 bg-violet-600 text-white px-3 py-1.5 rounded-xl text-sm font-medium hover:bg-violet-700 transition-colors">
+              <Save size={14} />저장
+            </button>
+            <button onClick={() => navigate('/')} className="p-2 rounded-xl text-slate-400 hover:text-violet-600 hover:bg-violet-50 transition-colors" title="홈으로">
+              <Home size={16} />
+            </button>
+          </div>
         </div>
       </header>
 
